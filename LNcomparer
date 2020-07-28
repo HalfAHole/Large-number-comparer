@@ -1,0 +1,39 @@
+#include <stdio.h>
+#include <stdlib.h>
+int main(void) {
+#define SIZE 1001
+#define SIZE2 1000
+char c, numar[SIZE], qar[SIZE], d[SIZE][SIZE];
+long int  ari[SIZE], dcnum=0, dcq=0, choice=0, a=0, b=0, e=0, j=0, x=0, nd=0;
+for (j=1; j<=SIZE2; j++) {ari[j]=0; numar[j]=0; qar[j]=0;}
+for (j=dcq; j>=1; j--) {for (b=dcnum; b>=1; b--) {d[b][j]=0;}}
+printf("Type \'e\' at end of each number\n");
+for (dcnum=1; dcnum<=SIZE2 || c=='\n'; dcnum++) {c=getchar(); numar[dcnum]=c-'0';
+	if (c=='\n') {dcnum--;}
+	if ((c=='e') || dcnum>SIZE) { numar[dcnum]='\0'; dcnum--; break;}}
+for (a=1, b=dcnum; a<=dcnum; a++, b--) {ari[a]=numar[b];}									//flip array
+for (a=1; a<=dcnum; a++) {numar[a]=ari[a];} for (j=1; j<=dcnum; j++) {ari[j]=0;}
+for (dcq=1; dcq<=SIZE2 || c=='\n'; dcq++) {c=getchar(); qar[dcq]=c-'0';
+	if (c=='\n') {dcq--;}
+	if ((c=='e') || dcq>SIZE) { qar[dcq]='\0'; dcq--;  break;}}
+for (a=1, b=dcq; a<=dcq; a++, b--) {ari[a]=qar[b];}									//flip array
+for (a=1; a<=dcq; a++) {qar[a]=ari[a];	} for (j=1; j<=dcq; j++) {ari[j]=0;}
+
+printf("\nLarge number comparer: \n\n"); e=0;
+for (j=dcnum; j>=1; j--) {if (numar[j]==0) {dcnum--;} if (numar[j]!=0) {break;}}
+for (j=dcq; j>=1; j--) {if (qar[j]==0) {dcq--;} if (qar[j]!=0) {break;}}
+if (dcnum>dcq) {e=0;} 
+if (dcnum<dcq) {e=1;}
+if (dcnum==dcq) {
+for (a=dcnum; a>=1; a--) {if (numar[a]>qar[a]) {e=0; break;} 
+							if (numar[a]<qar[a]) {e=1; break;}
+							if (numar[a]==qar[a]) {e=2;}}}
+
+for (j=dcnum; j>=1; j--) {printf("%d", numar[j]);}
+if (e==0) {printf(" is higher than "); }
+if (e==1) {printf(" is lower than "); }
+if (e==2) {printf(" is equal to "); }
+for (j=dcq; j>=1; j--) {printf("%d", qar[j]);}
+printf("\n\n");
+
+return (0);}
